@@ -110,15 +110,21 @@ class StmDiagramWindow(BaseWidget):
         for i, (index, msg) in enumerate( res.iterrows() ):
             state = msg[self.COL_MSG]
             begin = msg[self.COL_INITTIME]
+
+            if math.isnan(begin): continue
+
             curr  = nodes[state]
 
             for evt_i in range(curr_event, len(events) ):
                 evt_end = events[evt_i][0]
                 if evt_end<=begin:
-                    evt_label = events[evt_i][1]
+                    evt_label  = events[evt_i][1]
+                    curr_event = evt_i + 1
+                    break
 
             if prev and curr:
-                graph.add_edge( pydot.Edge(prev, curr, label='   '+evt_label, fontsize="10.0", arrowhead='normal') )
+                label = '   {0} ({1})'.format(evt_label, evt_end)
+                graph.add_edge( pydot.Edge(prev, curr, label=label, fontsize="10.0", arrowhead='normal') )
 
             prev = curr
 
