@@ -82,16 +82,16 @@ class StmDiagramWindow(BaseWidget):
             indexes_filter = "index>{0}".format(trial_begin)        
 
         if trial_end:
-            query = "TYPE in ['STATE'] and index>{0} and index<{1}".format(trial_begin, trial_end)
+            query = "TYPE in ['TRANSITION'] and index>{0} and index<{1}".format(trial_begin, trial_end)
         else:
-            query = "TYPE in ['STATE'] and index>{0}".format(trial_begin)
+            query = "TYPE in ['TRANSITION'] and index>{0}".format(trial_begin)
 
         res = self.session.data.query("TYPE in ['EVENT-SUMMARY']").query(indexes_filter)
         events = []
         for _, msg in res.iterrows():
             events.append( (msg[self.COL_INITTIME], msg[self.COL_INFO]) )
         
-        res = self.session.data.query("TYPE in ['STATE']").query(indexes_filter)
+        res = self.session.data.query("TYPE in ['TRANSITION']").query(indexes_filter)
 
         # this time, in graph_type we specify we want a DIrected GRAPH
         graph = pydot.Dot(graph_type='digraph', font='verdana')
@@ -129,11 +129,11 @@ class StmDiagramWindow(BaseWidget):
             prev = curr
 
         
-        graph.write_png('example2_graph.png',prog='dot')
+        graph.write_png('stm-diagram.png',prog='dot')
 
         # this is too good to be true!
 
-        self._image.value = 'example2_graph.png'
+        self._image.value = 'stm-diagram.png'
 
 
 
