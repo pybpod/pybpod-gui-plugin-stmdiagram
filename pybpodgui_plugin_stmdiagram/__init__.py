@@ -10,7 +10,7 @@ __email__ = ["ricardo.ribeiro@research.fchampalimaud.org", "ricardojvr@gmail.com
 __status__ = "Development"
 
 import loggingbootstrap
-from pyforms import conf
+from confapp import conf
 
 conf += 'pybpodgui_plugin_stmdiagram.settings'
 
