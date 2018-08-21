@@ -4,7 +4,7 @@
 """ pycontrolgui_plugin_timeline.trials_plot"""
 from pyforms.controls import ControlImage
 from pyforms.controls import ControlCombo
-from pyforms import BaseWidget
+from pyforms.basewidget import BaseWidget
 
 from pybpodapi.com.messaging.state_occurrence import StateOccurrence
 from pybpodapi.com.messaging.event_occurrence import EventOccurrence

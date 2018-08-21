@@ -1,1 +1,0 @@
-pybpodgui_plugin_stmdiagram
